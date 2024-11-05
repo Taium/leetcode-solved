@@ -1,24 +1,13 @@
-var isValid = function (s) {
-  let value = [];
-  const top = stack[stack.length - 1];
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] == "(" || s[i] == "{" || s[i] == "[") {
-      value.push(s[i]);
-    } else if (s[i] == ")" && top == "(") {
-      value.pop();
-    } else if (s[i] == "}" && top == "{") {
-      value.pop();
-    } else if (s[i] == "]" && top == "[") {
-      value.pop();
-    }
-    else{
-      return false
+
+let removeDuplicates = function (nums) {
+  let k = 0
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== nums[i + 1]) {
+      nums[k] = nums[i]
+      k++
     }
   }
-  if (value.length == 0) {
-    return true
-  } else {
-    return false;
-  }
+  return k
+
 };
-console.log(isValid("([)]"));
+console.log(removeDuplicates([0, 0, 1, 1, 2, 3]))
