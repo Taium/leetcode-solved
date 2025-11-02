@@ -1,13 +1,16 @@
-var findMedianSortedArrays = function (nums1, nums2) {
-    let sortedArray = nums1.concat(nums2).sort((a, b) => a - b);
-    let length = sortedArray.length;
-    let median = 0;
-    if (length % 2 == 0) {
-        median = (sortedArray[length / 2] + sortedArray[length / 2 - 1]) / 2;
-    }
-    else {
-        median = sortedArray[Math.floor(length / 2)];
-    }
-    return median;
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var firstUniqChar = function(s) {
+    const sArray = s.split('');
+    let index = -1;
+    for (let i = 0; i < sArray.length; i++) {
+        if (sArray.indexOf(sArray[i]) === sArray.lastIndexOf(sArray[i])) {
+            index = i;
+            break;
+        }}
+    return index;
 };
-console.log(findMedianSortedArrays([1, 3, 4, 7], [2, 5, 9, 15])) // [1, 2, 3];
+
+console.log(firstUniqChar("leetcode"))
