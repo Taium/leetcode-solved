@@ -1,16 +1,23 @@
 /**
  * @param {string} s
- * @return {number}
+ * @param {number} numRows
+ * @return {string}
  */
-var firstUniqChar = function(s) {
-    const sArray = s.split('');
-    let index = -1;
-    for (let i = 0; i < sArray.length; i++) {
-        if (sArray.indexOf(sArray[i]) === sArray.lastIndexOf(sArray[i])) {
-            index = i;
-            break;
-        }}
-    return index;
-};
+var convert = function(s, numRows) {
+    if (numRows === 1) return s;
+    const rows = new Array(Math.min(numRows, s.length)).fill('');
+    let curRow = 0;
+    let direction = false;
+    for (let i = 0; i < s.length; i++) {
+        rows[curRow] += s[i];
+        if(curRow === 0 || curRow === numRows - 1) {
+            direction = !direction;
+        }
+        curRow += direction ? 1 : -1;
+    }
+    console.log(rows)
+    return rows.join('');
 
-console.log(firstUniqChar("leetcode"))
+
+};
+console.log(convert("PAYPALISHIRING", 3))
