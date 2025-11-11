@@ -1,23 +1,29 @@
-/**
- * @param {string} s
- * @param {number} numRows
- * @return {string}
- */
-var convert = function(s, numRows) {
-    if (numRows === 1) return s;
-    const rows = new Array(Math.min(numRows, s.length)).fill('');
-    let curRow = 0;
-    let direction = false;
-    for (let i = 0; i < s.length; i++) {
-        rows[curRow] += s[i];
-        if(curRow === 0 || curRow === numRows - 1) {
-            direction = !direction;
-        }
-        curRow += direction ? 1 : -1;
+var myAtoi = function(s) {
+    let result = 0;
+    let newS = s.trim();
+    let sign = 1;
+    const INT_MAX = 2147483647;
+    const INT_MIN = -2147483648;
+
+    if (newS[0] === "-" || newS[0] === "+") {
+        sign = newS[0] === "-" ? -1 : 1;
+        newS = newS.slice(1);
     }
-    console.log(rows)
-    return rows.join('');
+    console.log("nnn", newS);
+    for (let i = 0; i < newS.length; i++) {
+        const char = newS[i];
 
+        if (char >= '0' && char <= '9') {
+            result = result * 10 + parseInt(char);
 
+            if (sign * result > INT_MAX) return INT_MAX;
+            if (sign * result < INT_MIN) return INT_MIN;
+        } else {
+            break;
+        }
+    }
+
+    return result * sign;
 };
-console.log(convert("PAYPALISHIRING", 3))
+
+console.log(myAtoi("    -0345i"));
